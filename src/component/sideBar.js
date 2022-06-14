@@ -19,7 +19,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { Route, Routes,useLocation,useNavigate } from 'react-router-dom';
+import { Route, Routes,useLocation,useNavigate, useParams } from 'react-router-dom';
 import NEWS from '../pages/subpage/news';
 import OneNews from '../pages/subpage/oneNew';
 import Headlines from '../pages/subpage/headlines';
@@ -31,6 +31,7 @@ import Services from '../pages/subpage/services';
 import HomeIcon from '@mui/icons-material/Home';
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import ReviewsIcon from '@mui/icons-material/Reviews';
+import MHTodos from '../pages/subpage/todos';
 
 
 const drawerWidth = 240;
@@ -103,11 +104,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function HMDrawer() {
   const theme = useTheme();
+  const {id} = useParams()
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 const location = useLocation();
 useEffect(()=>{if(location.state && location.state.user){
-      navigate("/")
+      
  }else{navigate("/login")}},[]);
 
   const handleDrawerOpen = () => {
@@ -117,8 +119,7 @@ useEffect(()=>{if(location.state && location.state.user){
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const sideNav = [{name: "Home",route:"/home",icon: <HomeIcon />},{name: "Services",route:"/services",icon: <HomeRepairServiceIcon />},{name: "Review",route:"/review",icon: <ReviewsIcon />},{name: "NEWS",route:"/",icon: <NewspaperIcon/>},{name: "Headlines",route:"/headlines",icon: <NewspaperIcon/>},{name: "One News",route:"/onenews",icon: <ArticleIcon/>}]
-
+  const sideNav = [{name: "Todos",route:`/todos`,icon: <ArticleIcon />},{name: "Home",route:`/home`,icon: <HomeIcon />},{name: "Services",route:"/services",icon: <HomeRepairServiceIcon />},{name: "Review",route:"/review",icon: <ReviewsIcon />},{name: "NEWS",route: `/${id}`,icon: <NewspaperIcon/>},{name: "Headlines",route:"/headlines",icon: <NewspaperIcon/>},{name: "One News",route:"/onenews",icon: <ArticleIcon/>}]
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -177,10 +178,11 @@ useEffect(()=>{if(location.state && location.state.user){
         <DrawerHeader />
         <Typography>
         <Routes>
+          <Route path="todos"  element={<MHTodos />} />
           <Route path="home"  element={<Home />} />
           <Route path="services"  element={<Services />} />
           <Route path="review"  element={<Review />} />
-          <Route path="/"  element={<NEWS />} />
+          <Route path="/:id"  element={<NEWS />} />
           <Route path="headlines"  element={<Headlines />} />
           <Route path="onenews"  element={<OneNews />} />
           
@@ -188,5 +190,6 @@ useEffect(()=>{if(location.state && location.state.user){
         </Typography>
       </Box>
     </Box>
-  );
-}
+  )
+
+  }

@@ -72,7 +72,7 @@ function MHSignUp(props) {
     <Grid item xs={12} sm={12} md={3}></Grid>
     <Grid item xs={12} sm={12} md={6}><div className={alertClass}><Alert icon={false} severity="success">{alert}</Alert></div></Grid>
     <Grid item  xs={12} sm={12} md={12} className="text-center fw-bold fs-1"><Button loader={loader} width="80%" onClick={SignUp} class="btn btn-outline-success" text="Sign Up"/></Grid>
-    <Grid item  xs={12} sm={12} md={12} className="text-center fw-bold fs-4 py-5">Do you have an account ?  <Button width="120px" destination="/login" class="btn btn-outline-primary" text="Login"/></Grid>
+    <Grid item  xs={12} sm={12} md={12} className="text-center fw-bold fs-4 py-5">Do you have an account ?  <Button width="120px" onClick={()=>navigate("/login")} class="btn btn-outline-primary" text="Login"/></Grid>
 </Grid>
         </div>
     )

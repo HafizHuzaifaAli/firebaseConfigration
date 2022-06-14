@@ -36,9 +36,9 @@ function MHLogin(props) {
     
   }
     return(
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center align-items-center">
           
-            <Grid container className="text-center my-4  rounded">
+            <Grid container className="text-center floating rounded">
     <Grid item xs={12} sm={12} md={12} className="text-center  fw-bold fs-1">LogIn.
      <Box><AccountCircleIcon fontSize="large" /></Box>
     </Grid>
@@ -53,7 +53,7 @@ function MHLogin(props) {
     
     
     <Grid item  xs={12} sm={12} md={12} ><Button width="60%" loader={loader}  onClick={login} class="btn btn-outline-success" text="LogIn"/></Grid>
-    <Grid item  xs={12} sm={12} md={12} className="text-center fw-bold fs-4 py-5">Do't have an account ?  <Button width="120px" destination="/signup" class="btn btn-outline-primary" text="SignUp"/></Grid>
+    <Grid item  xs={12} sm={12} md={12} className="text-center fw-bold fs-4 py-5">Do't have an account ?  <Button width="120px" onClick={()=>navigate("/signup")} class="btn btn-outline-primary" text="SignUp"/></Grid>
     
 </Grid>
         </div>
